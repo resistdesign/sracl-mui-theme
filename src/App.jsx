@@ -5,7 +5,18 @@ import {
   Box,
   Button,
   Typography,
-  CssBaseline, Input, TextField, Checkbox, Radio, RadioGroup
+  CssBaseline,
+  Input,
+  TextField,
+  Checkbox,
+  Radio,
+  RadioGroup,
+  Card,
+  CardHeader,
+  CardContent,
+  CardActions,
+  CardMedia,
+  CardActionArea
 } from '@material-ui/core';
 import {
   createMuiTheme,
@@ -178,6 +189,55 @@ const InputSection = () => {
   );
 };
 
+const ItemLayoutSection = () => (
+  <Section
+    title='Item Layouts'
+  >
+    <SubSection
+      title='Cards'
+    >
+      <Card>
+        <CardActionArea>
+          <CardMedia
+            image='https://resist.design/Console%20BG%202.jpg'
+            title='Subtle Gray Structure'
+            style={{
+              height: 0,
+              paddingTop: '50%'
+            }}
+          />
+          <CardHeader
+            title='Card Header'
+          />
+          <CardContent>
+            Card Content
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Box
+            width='100%'
+            display='flex'
+            justifyContent='flex-end'
+          >
+            <Button
+              variant='text'
+              color='primary'
+            >
+              Ok
+            </Button>
+            <Button
+              variant='text'
+              color='secondary'
+            >
+              Cancel
+            </Button>
+          </Box>
+        </CardActions>
+      </Card>
+    </SubSection>
+  </Section>
+);
+
 export const App = () => (
   <Fragment>
     <GlobalStyle/>
@@ -209,6 +269,7 @@ export const App = () => (
         <SectionGrid>
           <ButtonSection/>
           <InputSection/>
+          <ItemLayoutSection/>
         </SectionGrid>
       </Base>
     </ThemeProvider>
