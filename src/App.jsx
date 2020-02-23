@@ -73,7 +73,7 @@ const Title = styled(Typography).attrs(p => ({
 const SectionGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1em;
+  grid-gap: 4em;
   padding: 2em;
   box-sizing: border-box;
   
@@ -168,7 +168,7 @@ const InputSection = () => {
           <TextField
             defaultValue='Value'
             multiline
-            rows={10}
+            rows={5}
           />
         </RowBox>
       </SubSection>
@@ -349,10 +349,10 @@ export const App = () => (
         </HeaderBox>
         <SectionGrid>
           <ButtonSection/>
-          <InputSection/>
           <CardSection/>
-          <ListSection/>
           <ProgressSection/>
+          <ListSection/>
+          <InputSection/>
         </SectionGrid>
       </Base>
     </ThemeProvider>
