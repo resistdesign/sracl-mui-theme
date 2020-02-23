@@ -32,11 +32,10 @@ const Base = styled(Box)`
 `;
 const HeaderBox = styled(Box)`
   box-sizing: border-box;
-  padding: 1em;
+  padding: 2em;
 `;
 const LogoImg = styled.img`
-  max-width: 10em;
-  margin-right: 1.5em;
+  width: 7.5em;
 `;
 const Title = styled(Typography).attrs(p => ({
   ...p,
@@ -78,7 +77,7 @@ export class App extends Component {
               <Title
                 variant='h5'
               >
-                SRACL <Title display='inline' variant='h6' color='textSecondary'>MUI Theme</Title>
+                SRACL <Title display='inline' variant='h5' color='textSecondary'>MUI Theme</Title>
               </Title>
             </HeaderBox>
           </Base>
