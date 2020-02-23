@@ -1,7 +1,8 @@
 import './Assets/Fonts/Gasalt/stylesheet.css';
 import {hot} from 'react-hot-loader';
-import React, {Component, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import {
+  Avatar,
   Box,
   Button,
   Typography,
@@ -16,7 +17,9 @@ import {
   CardContent,
   CardActions,
   CardMedia,
-  CardActionArea
+  CardActionArea,
+  List,
+  ListItem, ListItemText, ListItemAvatar, CircularProgress, LinearProgress, Paper
 } from '@material-ui/core';
 import {
   createMuiTheme,
@@ -69,10 +72,14 @@ const Title = styled(Typography).attrs(p => ({
 `;
 const SectionGrid = styled.div`
   display: grid;
-  grid-auto-flow: column dense;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1em;
   padding: 2em;
   box-sizing: border-box;
+  
+  @media (max-width: 620px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const SubSectionBox = styled.div`
   padding: 1em;
@@ -84,22 +91,26 @@ const RowBox = styled(SubSectionBox)`
   justify-content: flex-start;
   grid-gap: 1em;
 `;
-const Section = ({title = 'Section', children, ...props} = {}) => (
+const Section = ({title = '', children, ...props} = {}) => (
   <Box
     {...props}
   >
-    <Typography variant='h6'>{title}</Typography>
+    {!!title ? (<Typography variant='h6'>{title}</Typography>) : undefined}
     {children}
   </Box>
 );
-const SubSection = ({title = 'Section', children, ...props} = {}) => (
+const SubSection = ({title = '', children, ...props} = {}) => (
   <SubSectionBox
     {...props}
   >
-    <Typography>{title}</Typography>
+    {!!title ? (<Typography>{title}</Typography>) : undefined}
     {children}
   </SubSectionBox>
 );
+
+// **********
+// Layouts
+// **********
 
 const ButtonSection = () => {
   const variantMap = {
@@ -136,7 +147,6 @@ const ButtonSection = () => {
     </Section>
   );
 };
-
 const InputSection = () => {
   return (
     <Section
@@ -188,14 +198,11 @@ const InputSection = () => {
     </Section>
   );
 };
-
-const ItemLayoutSection = () => (
+const CardSection = () => (
   <Section
-    title='Item Layouts'
+    title='Card'
   >
-    <SubSection
-      title='Cards'
-    >
+    <SubSection>
       <Card>
         <CardActionArea>
           <CardMedia
@@ -237,6 +244,80 @@ const ItemLayoutSection = () => (
     </SubSection>
   </Section>
 );
+const ListSection = () => (
+  <Section
+    title='List'
+  >
+    <SubSection>
+      <Paper>
+        <List
+          component='nav'
+        >
+          {[...new Array(10)].map((x, i) => (
+            <ListItem
+              button
+            >
+              <ListItemAvatar>
+                <Avatar
+                  style={{
+                    backgroundColor: THEME.palette.secondary.main
+                  }}
+                >
+                  <Typography
+                    variant='h6'
+                    color='textPrimary'
+                  >
+                    I{i + 1}
+                  </Typography>
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary
+              >
+                Item #{i + 1}
+              </ListItemText>
+              <ListItemText
+                secondary
+              >
+                This is a list item.
+              </ListItemText>
+            </ListItem>
+          ))}
+        </List>
+      </Paper>
+    </SubSection>
+  </Section>
+);
+const ProgressSection = () => (
+  <Section
+    title='Progress'
+  >
+    <SubSection
+      title='Circular'
+    >
+      <RowBox>
+        <CircularProgress/>
+        <CircularProgress
+          color="secondary"
+        />
+      </RowBox>
+    </SubSection>
+    <SubSection
+      title='Linear'
+    >
+      <br/>
+      <LinearProgress/>
+      <br/>
+      <LinearProgress
+        color="secondary"
+      />
+    </SubSection>
+  </Section>
+);
+
+// **********
+// Layouts
+// **********
 
 export const App = () => (
   <Fragment>
@@ -269,7 +350,9 @@ export const App = () => (
         <SectionGrid>
           <ButtonSection/>
           <InputSection/>
-          <ItemLayoutSection/>
+          <CardSection/>
+          <ListSection/>
+          <ProgressSection/>
         </SectionGrid>
       </Base>
     </ThemeProvider>
