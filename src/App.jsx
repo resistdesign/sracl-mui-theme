@@ -4,9 +4,8 @@ import React, {Component, Fragment} from 'react';
 import {
   Box,
   Button,
-  Container,
   Typography,
-  CssBaseline
+  CssBaseline, Input, TextField, Checkbox, Radio, RadioGroup
 } from '@material-ui/core';
 import {
   createMuiTheme,
@@ -24,13 +23,21 @@ const GlobalStyle = createGlobalStyle`
   #app-root {
     margin: 0;
     padding: 0;
-    width: 100vw;
-    height: 100vh;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
   }
 `;
 const Base = styled(Box)`
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
 `;
 const HeaderBox = styled(Box)`
   box-sizing: border-box;
@@ -49,6 +56,13 @@ const Title = styled(Typography).attrs(p => ({
 }))`
   
 `;
+const SectionGrid = styled.div`
+  display: grid;
+  grid-auto-flow: column dense;
+  grid-gap: 1em;
+  padding: 2em;
+  box-sizing: border-box;
+`;
 const SubSectionBox = styled.div`
   padding: 1em;
 `;
@@ -59,6 +73,22 @@ const RowBox = styled(SubSectionBox)`
   justify-content: flex-start;
   grid-gap: 1em;
 `;
+const Section = ({title = 'Section', children, ...props} = {}) => (
+  <Box
+    {...props}
+  >
+    <Typography variant='h6'>{title}</Typography>
+    {children}
+  </Box>
+);
+const SubSection = ({title = 'Section', children, ...props} = {}) => (
+  <SubSectionBox
+    {...props}
+  >
+    <Typography>{title}</Typography>
+    {children}
+  </SubSectionBox>
+);
 
 const ButtonSection = () => {
   const variantMap = {
@@ -73,11 +103,13 @@ const ButtonSection = () => {
   ];
 
   return (
-    <Box>
-      <Typography variant='h6'>Button</Typography>
+    <Section
+      title='Button'
+    >
       {Object.keys(variantMap).map(k => (
-        <SubSectionBox>
-          <Typography>{variantMap[k]}</Typography>
+        <SubSection
+          title={variantMap[k]}
+        >
           <RowBox>
             {colors.map(c => (
               <Button
@@ -88,9 +120,61 @@ const ButtonSection = () => {
               </Button>
             ))}
           </RowBox>
-        </SubSectionBox>
+        </SubSection>
       ))}
-    </Box>
+    </Section>
+  );
+};
+
+const InputSection = () => {
+  return (
+    <Section
+      title='Inputs'
+    >
+      <SubSection
+        title='Text Input'
+      >
+        <RowBox>
+          <Input
+            defaultValue='Value'
+          />
+        </RowBox>
+      </SubSection>
+      <SubSection
+        title='Text Area'
+      >
+        <RowBox>
+          <TextField
+            defaultValue='Value'
+            multiline
+            rows={10}
+          />
+        </RowBox>
+      </SubSection>
+      <SubSection
+        title='Form Components'
+      >
+        <RowBox>
+          <Checkbox/>
+          <Checkbox
+            checked
+          />
+        </RowBox>
+        <RowBox>
+          <RadioGroup
+            name='radio-group'
+            value='two'
+          >
+            <Radio
+              value='one'
+            />
+            <Radio
+              value='two'
+            />
+          </RadioGroup>
+        </RowBox>
+      </SubSection>
+    </Section>
   );
 };
 
@@ -122,9 +206,10 @@ export const App = () => (
             SRACL <Title display='inline' variant='h5' color='textSecondary'>MUI Theme</Title>
           </Title>
         </HeaderBox>
-        <Container>
+        <SectionGrid>
           <ButtonSection/>
-        </Container>
+          <InputSection/>
+        </SectionGrid>
       </Base>
     </ThemeProvider>
   </Fragment>
