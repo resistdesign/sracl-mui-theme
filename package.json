@@ -1,0 +1,26 @@
+{
+  "name": "@resistdesign/sracl-mui-theme",
+  "version": "0.0.0",
+  "description": "SRACL MUI Theme",
+  "main": "src/theme.json",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/resistdesign/sracl-mui-theme.git"
+  },
+  "keywords": [
+    "SRACL",
+    "MUI",
+    "theme",
+    "design",
+    "UI"
+  ],
+  "author": "Resist Design",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/resistdesign/sracl-mui-theme/issues"
+  },
+  "homepage": "https://github.com/resistdesign/sracl-mui-theme#readme"
+}
