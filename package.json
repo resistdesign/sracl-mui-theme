@@ -25,5 +25,14 @@
   "bugs": {
     "url": "https://github.com/resistdesign/sracl-mui-theme/issues"
   },
-  "homepage": "https://github.com/resistdesign/sracl-mui-theme#readme"
+  "homepage": "https://github.com/resistdesign/sracl-mui-theme#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.9.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.118.0"
+  }
 }
