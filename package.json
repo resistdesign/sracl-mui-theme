@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "SRACL MUI Theme",
   "main": "src/theme.json",
+  "files": [
+    "src/theme.json"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
