@@ -3,6 +3,8 @@ import {hot} from 'react-hot-loader';
 import React, {Component, Fragment} from 'react';
 import {
   Box,
+  Button,
+  Container,
   Typography,
   CssBaseline
 } from '@material-ui/core';
@@ -47,44 +49,85 @@ const Title = styled(Typography).attrs(p => ({
 }))`
   
 `;
+const SubSectionBox = styled.div`
+  padding: 1em;
+`;
+const RowBox = styled(SubSectionBox)`
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: flex-start;
+  grid-gap: 1em;
+`;
 
-export class App extends Component {
-  static propTypes = {};
+const ButtonSection = () => {
+  const variantMap = {
+    contained: 'Contained',
+    outlined: 'Outlined',
+    text: 'Text'
+  };
+  const colors = [
+    'primary',
+    'secondary',
+    'default'
+  ];
 
-  render() {
-    return (
-      <Fragment>
-        <GlobalStyle/>
-        <ThemeProvider
-          theme={THEME}
-        >
-          <CssBaseline/>
-          <Base
-            display='flex'
-            flexDirection='column'
-            alignItems='stretch'
-            justifyContent='flex-start'
-          >
-            <HeaderBox
-              display='flex'
-              flexDirection='row'
-              alignItems='center'
-              justifyContent='flex-start'
-            >
-              <LogoImg
-                src={Logo}
-              />
-              <Title
-                variant='h5'
+  return (
+    <Box>
+      <Typography variant='h6'>Button</Typography>
+      {Object.keys(variantMap).map(k => (
+        <SubSectionBox>
+          <Typography>{variantMap[k]}</Typography>
+          <RowBox>
+            {colors.map(c => (
+              <Button
+                variant={k}
+                color={c}
               >
-                SRACL <Title display='inline' variant='h5' color='textSecondary'>MUI Theme</Title>
-              </Title>
-            </HeaderBox>
-          </Base>
-        </ThemeProvider>
-      </Fragment>
-    );
-  }
-}
+                Label
+              </Button>
+            ))}
+          </RowBox>
+        </SubSectionBox>
+      ))}
+    </Box>
+  );
+};
+
+export const App = () => (
+  <Fragment>
+    <GlobalStyle/>
+    <ThemeProvider
+      theme={THEME}
+    >
+      <CssBaseline/>
+      <Base
+        display='flex'
+        flexDirection='column'
+        alignItems='stretch'
+        justifyContent='flex-start'
+      >
+        <HeaderBox
+          display='flex'
+          flexDirection='row'
+          alignItems='center'
+          justifyContent='flex-start'
+        >
+          <LogoImg
+            src={Logo}
+          />
+          <Title
+            variant='h5'
+          >
+            SRACL <Title display='inline' variant='h5' color='textSecondary'>MUI Theme</Title>
+          </Title>
+        </HeaderBox>
+        <Container>
+          <ButtonSection/>
+        </Container>
+      </Base>
+    </ThemeProvider>
+  </Fragment>
+);
 
 export default hot(module)(App);
